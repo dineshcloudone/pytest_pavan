@@ -31,7 +31,10 @@ Grouping
 	 	pytest.ini file   ---> contains customized markers
 	
 	Command to execute: 	pytest -v -s -m "sanity" day27\test_Grouping.py
-	
+		-k option to specify expressions to select tests based on their names
+			pytest -v -s -k "sanity and test_Grouping" day27\test_Grouping.py
+			pytest -v -s -k "sanity or test_Grouping" day27\test_Grouping.py
+
 
 Parallel execution
 		install package:  pytest-xdist
