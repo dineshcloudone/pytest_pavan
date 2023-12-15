@@ -18,3 +18,52 @@ Generating HTML reports...
 	pytest-html
 
 	pytest -s -v --html=day28\report.html .\day28\test_CommandLine2.py --browser chrome
+
+
+
+
+**conftest.py:**
+	brief explanation by chatgpt
+
+`conftest.py` is a special module in the `pytest` testing framework for Python. It is used to define fixtures, hooks, and other configurations that can be shared across multiple test modules within a test suite. Here are some key aspects of `conftest.py`:
+
+1. **Fixtures:**
+   - `conftest.py` is commonly used to define fixtures, which are functions that set up a test environment or provide data for tests.
+   - Fixtures defined in `conftest.py` are automatically discovered and made available to all the test modules in the same directory and its subdirectories.
+
+2. **Shared Configuration:**
+   - `conftest.py` allows you to define shared configuration settings and variables that can be used by multiple test modules.
+
+3. **Hooks:**
+   - You can use `conftest.py` to define pytest hooks, which are functions that can be invoked at various points during the testing process.
+
+4. **Plugin Initialization:**
+   - If you have custom plugins or need to perform some initialization for your tests, `conftest.py` can be used for that purpose.
+
+Here's a simple example of a `conftest.py` file:
+
+```python
+# conftest.py
+
+import pytest
+
+# Fixture definition
+@pytest.fixture
+def sample_data():
+    return [1, 2, 3, 4, 5]
+
+# Configuration setting
+SOME_CONFIG = "This is a configuration setting."
+
+# Hook implementation
+def pytest_runtest_setup(item):
+    print(f"Running setup for test: {item.nodeid}")
+```
+
+In this example:
+
+- `sample_data` is a fixture that can be used by any test module in the same directory or its subdirectories.
+- `SOME_CONFIG` is a configuration setting that can be accessed by the tests.
+- `pytest_runtest_setup` is a hook that is invoked before each test is run. This hook is used here for demonstration purposes.
+
+By convention, `conftest.py` should be placed in a directory where it can be discovered by `pytest`—typically in the same directory as your test modules or in a directory above them. This ensures that the fixtures and configurations defined in `conftest.py` are available to the tests.
